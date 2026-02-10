@@ -1,4 +1,4 @@
-import { apiClient } from "./client";
+import { apiClient } from "../client.js";
 import type { Handyman, HandymanFilters, Rating } from "@fix-it/types";
 
 export const handymanService = {

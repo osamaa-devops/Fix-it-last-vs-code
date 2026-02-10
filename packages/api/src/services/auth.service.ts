@@ -1,4 +1,4 @@
-import { apiClient } from "./client";
+import { apiClient } from "../client.js";
 import type { User, AuthResponse, LoginRequest, RegisterRequest } from "@fix-it/types";
 
 export const authService = {

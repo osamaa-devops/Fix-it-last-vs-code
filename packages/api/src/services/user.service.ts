@@ -1,4 +1,4 @@
-import { apiClient } from "./client";
+import { apiClient } from "../client.js";
 import type { User, UpdateProfileRequest } from "@fix-it/types";
 
 export const userService = {

@@ -1,4 +1,4 @@
-import { apiClient } from "./client";
+import { apiClient } from "../client.js";
 import type { Order, CreateOrderRequest, OrderFilters } from "@fix-it/types";
 
 export const orderService = {
