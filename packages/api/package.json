@@ -18,8 +18,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@fix-it/types": "workspace:*",
-    "@fix-it/schemas": "workspace:*",
+    "@fix-it/types": "*",
+    "@fix-it/schemas": "*",
     "axios": "^1.6.0"
   },
   "devDependencies": {

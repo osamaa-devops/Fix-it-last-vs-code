@@ -1,19 +1,64 @@
-import { Stack } from "expo-router";
+import React from 'react';
+import { Stack } from 'expo-router';
+import { AuthProvider, useAuth } from '../context/auth';
 
-export default function RootLayout() {
+function AuthStackLayout() {
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          animationEnabled: false,
+        }}
+      >
+        <Stack.Screen
+          name="loading"
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack>
+    );
+  }
+
   return (
     <Stack
       screenOptions={{
-        headerStyle: {
-          backgroundColor: "#f1f5f9",
-        },
-        headerTintColor: "#000",
-        headerTitleStyle: {
-          fontWeight: "600",
-        },
+        headerShown: false,
+        animationEnabled: true,
+        cardStyle: { backgroundColor: 'white' },
       }}
     >
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      {isAuthenticated ? (
+        <>
+          <Stack.Screen
+            name="(dashboard)"
+            options={{
+              headerShown: false,
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <Stack.Screen
+            name="(auth)"
+            options={{
+              headerShown: false,
+            }}
+          />
+        </>
+      )}
     </Stack>
   );
 }
+
+export default function RootLayout() {
+  return (
+    <AuthProvider>
+      <AuthStackLayout />
+    </AuthProvider>
+  );
+}
+
