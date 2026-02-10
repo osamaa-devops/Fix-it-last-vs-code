@@ -1,0 +1,54 @@
+{
+  "$schema": "https://turbo.build/json-schema.json",
+  "globalDependencies": [
+    "**/.env.local",
+    ".env.production"
+  ],
+  "globalEnv": [
+    "NODE_ENV"
+  ],
+  "pipeline": {
+    "db:push": {
+      "cache": false,
+      "env": [
+        "DATABASE_URL"
+      ]
+    },
+    "db:migrate": {
+      "cache": false,
+      "env": [
+        "DATABASE_URL"
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".next/**",
+        "dist/**",
+        "build/**"
+      ],
+      "cache": true
+    },
+    "lint": {
+      "cache": true,
+      "outputs": [
+        ".eslintcache"
+      ]
+    },
+    "type-check": {
+      "cache": true
+    },
+    "test": {
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
