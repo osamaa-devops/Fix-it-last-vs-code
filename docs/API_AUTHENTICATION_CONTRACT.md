@@ -89,11 +89,13 @@ New Access Token + New Refresh Token
 ## Base URL & Headers
 
 ### Base URL
+
 ```
 https://api.fixit.local/v1/auth
 ```
 
 ### Required Headers
+
 ```json
 {
   "Content-Type": "application/json",
@@ -102,6 +104,7 @@ https://api.fixit.local/v1/auth
 ```
 
 ### Authorization Header
+
 ```
 Authorization: Bearer {access_token}
 ```
@@ -117,6 +120,7 @@ Authorization: Bearer {access_token}
 **Description:** Create a new user account (Customer or Handyman)
 
 **Request Body:**
+
 ```json
 {
   "email": "customer@example.com",
@@ -129,6 +133,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Path Description:**
+
 - `email` (string, required): Unique email address
 - `password` (string, required): Minimum 8 characters, must include uppercase, lowercase, number, special character
 - `confirmPassword` (string, required): Must match password
@@ -137,6 +142,7 @@ Authorization: Bearer {access_token}
 - `phoneNumber` (string, required): International format
 
 **Response (201 Created):**
+
 ```json
 {
   "success": true,
@@ -153,6 +159,7 @@ Authorization: Bearer {access_token}
 **Error Responses:**
 
 **409 Conflict - Email Already Exists:**
+
 ```json
 {
   "success": false,
@@ -165,6 +172,7 @@ Authorization: Bearer {access_token}
 ```
 
 **400 Bad Request - Validation Error:**
+
 ```json
 {
   "success": false,
@@ -188,6 +196,7 @@ Authorization: Bearer {access_token}
 **Description:** Verify OTP sent during registration
 
 **Request Body:**
+
 ```json
 {
   "email": "customer@example.com",
@@ -197,6 +206,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -224,6 +234,7 @@ Authorization: Bearer {access_token}
 **Error Responses:**
 
 **400 Bad Request - Invalid OTP:**
+
 ```json
 {
   "success": false,
@@ -236,6 +247,7 @@ Authorization: Bearer {access_token}
 ```
 
 **400 Bad Request - Too Many Attempts:**
+
 ```json
 {
   "success": false,
@@ -256,6 +268,7 @@ Authorization: Bearer {access_token}
 **Description:** Authenticate user with email and password
 
 **Request Body:**
+
 ```json
 {
   "email": "customer@example.com",
@@ -264,6 +277,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response (200 OK) - CUSTOMER Role:**
+
 ```json
 {
   "success": true,
@@ -290,6 +304,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response (200 OK) - HANDYMAN Role:**
+
 ```json
 {
   "success": true,
@@ -322,6 +337,7 @@ Authorization: Bearer {access_token}
 **Error Responses:**
 
 **401 Unauthorized - Invalid Credentials:**
+
 ```json
 {
   "success": false,
@@ -334,6 +350,7 @@ Authorization: Bearer {access_token}
 ```
 
 **403 Forbidden - Account Suspended:**
+
 ```json
 {
   "success": false,
@@ -347,6 +364,7 @@ Authorization: Bearer {access_token}
 ```
 
 **429 Too Many Requests - Rate Limited:**
+
 ```json
 {
   "success": false,
@@ -367,6 +385,7 @@ Authorization: Bearer {access_token}
 **Description:** Request password reset OTP
 
 **Request Body:**
+
 ```json
 {
   "email": "customer@example.com"
@@ -374,6 +393,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -389,6 +409,7 @@ Authorization: Bearer {access_token}
 **Error Responses:**
 
 **404 Not Found - User Not Found:**
+
 ```json
 {
   "success": false,
@@ -409,6 +430,7 @@ Authorization: Bearer {access_token}
 **Description:** Verify OTP for password reset
 
 **Request Body:**
+
 ```json
 {
   "email": "customer@example.com",
@@ -418,6 +440,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -438,6 +461,7 @@ Authorization: Bearer {access_token}
 **Description:** Set new password after OTP verification
 
 **Request Body:**
+
 ```json
 {
   "email": "customer@example.com",
@@ -448,6 +472,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -477,6 +502,7 @@ Authorization: Bearer {access_token}
 **Description:** Get new access token using refresh token
 
 **Request Body:**
+
 ```json
 {
   "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -484,6 +510,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -500,6 +527,7 @@ Authorization: Bearer {access_token}
 **Error Responses:**
 
 **401 Unauthorized - Invalid Refresh Token:**
+
 ```json
 {
   "success": false,
@@ -520,11 +548,13 @@ Authorization: Bearer {access_token}
 **Description:** Invalidate refresh token (optional - can be client-side only)
 
 **Headers:**
+
 ```
 Authorization: Bearer {access_token}
 ```
 
 **Request Body:**
+
 ```json
 {
   "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -532,6 +562,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -548,11 +579,13 @@ Authorization: Bearer {access_token}
 **Description:** Get current authenticated user details
 
 **Headers:**
+
 ```
 Authorization: Bearer {access_token}
 ```
 
 **Response (200 OK):**
+
 ```json
 {
   "success": true,
@@ -574,6 +607,7 @@ Authorization: Bearer {access_token}
 **Error Responses:**
 
 **401 Unauthorized - No Token:**
+
 ```json
 {
   "success": false,
@@ -585,6 +619,7 @@ Authorization: Bearer {access_token}
 ```
 
 **401 Unauthorized - Invalid Token:**
+
 ```json
 {
   "success": false,
@@ -603,18 +638,19 @@ Authorization: Bearer {access_token}
 
 ```typescript
 interface User {
-  id: string;                 // UUID
-  email: string;              // Unique email
+  id: string; // UUID
+  email: string; // Unique email
   role: "CUSTOMER" | "HANDYMAN" | "ADMIN";
   fullName: string;
-  phoneNumber: string;        // International format
+  phoneNumber: string; // International format
   status: "ACTIVE" | "INACTIVE" | "SUSPENDED";
-  avatar?: string;            // URL to avatar image
-  createdAt: string;          // ISO 8601 timestamp
+  avatar?: string; // URL to avatar image
+  createdAt: string; // ISO 8601 timestamp
 }
 ```
 
 ### Customer-Specific Fields
+
 ```typescript
 interface Customer extends User {
   address?: string;
@@ -629,13 +665,14 @@ interface Customer extends User {
 ```
 
 ### Handyman-Specific Fields
+
 ```typescript
 interface Handyman extends User {
   verified: boolean;
-  rating: number;             // 0-5 stars
+  rating: number; // 0-5 stars
   completedJobs: number;
-  profileCompletion: number;  // 0-100%
-  services: string[];         // Service categories
+  profileCompletion: number; // 0-100%
+  services: string[]; // Service categories
   hourlyRate: number;
   availability: {
     monday: { start: string; end: string }[];
@@ -649,9 +686,9 @@ interface Handyman extends User {
 
 ```typescript
 interface AuthTokens {
-  accessToken: string;        // JWT, expires in 15 minutes
-  refreshToken: string;       // JWT, expires in 7 days
-  expiresIn: number;          // Seconds until expiration
+  accessToken: string; // JWT, expires in 15 minutes
+  refreshToken: string; // JWT, expires in 7 days
+  expiresIn: number; // Seconds until expiration
   tokenType: "Bearer";
 }
 ```
@@ -660,11 +697,11 @@ interface AuthTokens {
 
 ```typescript
 interface JWTAccessPayload {
-  sub: string;                // User ID
+  sub: string; // User ID
   email: string;
   role: "CUSTOMER" | "HANDYMAN" | "ADMIN";
-  iat: number;                // Issued at
-  exp: number;                // Expiration (15 min)
+  iat: number; // Issued at
+  exp: number; // Expiration (15 min)
 }
 ```
 
@@ -672,9 +709,9 @@ interface JWTAccessPayload {
 
 ```typescript
 interface JWTRefreshPayload {
-  sub: string;                // User ID
-  iat: number;                // Issued at
-  exp: number;                // Expiration (7 days)
+  sub: string; // User ID
+  iat: number; // Issued at
+  exp: number; // Expiration (7 days)
 }
 ```
 
@@ -706,11 +743,11 @@ interface LoginRequest {
 interface ApiError {
   success: false;
   error: {
-    code: string;             // Machine-readable error code
-    message: string;          // Human-readable message
+    code: string; // Machine-readable error code
+    message: string; // Human-readable message
     details?: Record<string, string>; // Field-level errors
-    suggestion?: string;      // What user should do next
-    retryAfter?: number;      // Seconds to wait before retry
+    suggestion?: string; // What user should do next
+    retryAfter?: number; // Seconds to wait before retry
     attemptsRemaining?: number;
     supportEmail?: string;
   };
@@ -724,30 +761,36 @@ interface ApiError {
 ### Error Categories
 
 #### 1. **Validation Errors (400)**
+
 - Field validation failures
 - Invalid data format
 - Missing required fields
 
 #### 2. **Authentication Errors (401)**
+
 - Invalid credentials
 - Missing/expired access token
 - Invalid refresh token
 
 #### 3. **Authorization Errors (403)**
+
 - Account suspended
 - Insufficient permissions
 - Account locked
 
 #### 4. **Conflict Errors (409)**
+
 - Email already registered
 - Duplicate resource
 
 #### 5. **Rate Limiting (429)**
+
 - Too many login attempts
 - Too many OTP verifications
 - API quota exceeded
 
 #### 6. **Server Errors (500)**
+
 - Internal server error
 - Database connection failure
 - External service timeout
@@ -771,36 +814,36 @@ All errors follow this format:
 
 ### Common Error Codes
 
-| Code | HTTP Status | Meaning |
-|------|-------------|---------|
-| `VALIDATION_ERROR` | 400 | Invalid request data |
-| `INVALID_CREDENTIALS` | 401 | Wrong email/password |
-| `MISSING_TOKEN` | 401 | No auth token provided |
-| `INVALID_TOKEN` | 401 | Token is invalid/expired |
-| `INVALID_OTP` | 400 | Wrong OTP code |
-| `OTP_ATTEMPTS_EXCEEDED` | 429 | Too many OTP tries |
-| `EMAIL_ALREADY_EXISTS` | 409 | Email in use |
-| `USER_NOT_FOUND` | 404 | User doesn't exist |
-| `ACCOUNT_SUSPENDED` | 403 | Account locked |
-| `TOO_MANY_ATTEMPTS` | 429 | Rate limited |
-| `INVALID_REFRESH_TOKEN` | 401 | Refresh token expired |
+| Code                    | HTTP Status | Meaning                  |
+| ----------------------- | ----------- | ------------------------ |
+| `VALIDATION_ERROR`      | 400         | Invalid request data     |
+| `INVALID_CREDENTIALS`   | 401         | Wrong email/password     |
+| `MISSING_TOKEN`         | 401         | No auth token provided   |
+| `INVALID_TOKEN`         | 401         | Token is invalid/expired |
+| `INVALID_OTP`           | 400         | Wrong OTP code           |
+| `OTP_ATTEMPTS_EXCEEDED` | 429         | Too many OTP tries       |
+| `EMAIL_ALREADY_EXISTS`  | 409         | Email in use             |
+| `USER_NOT_FOUND`        | 404         | User doesn't exist       |
+| `ACCOUNT_SUSPENDED`     | 403         | Account locked           |
+| `TOO_MANY_ATTEMPTS`     | 429         | Rate limited             |
+| `INVALID_REFRESH_TOKEN` | 401         | Refresh token expired    |
 
 ---
 
 ## Status Codes
 
-| Code | Meaning | Use Case |
-|------|---------|----------|
-| **200** | OK | Successful request |
-| **201** | Created | New resource created |
-| **400** | Bad Request | Validation failed |
-| **401** | Unauthorized | Auth failed/expired |
-| **403** | Forbidden | Access denied |
-| **404** | Not Found | Resource not found |
-| **409** | Conflict | Resource already exists |
-| **429** | Too Many Requests | Rate limited |
-| **500** | Internal Error | Server error |
-| **503** | Service Unavailable | Maintenance/outage |
+| Code    | Meaning             | Use Case                |
+| ------- | ------------------- | ----------------------- |
+| **200** | OK                  | Successful request      |
+| **201** | Created             | New resource created    |
+| **400** | Bad Request         | Validation failed       |
+| **401** | Unauthorized        | Auth failed/expired     |
+| **403** | Forbidden           | Access denied           |
+| **404** | Not Found           | Resource not found      |
+| **409** | Conflict            | Resource already exists |
+| **429** | Too Many Requests   | Rate limited            |
+| **500** | Internal Error      | Server error            |
+| **503** | Service Unavailable | Maintenance/outage      |
 
 ---
 
@@ -864,20 +907,22 @@ All errors follow this format:
 ### Token Storage (Next.js)
 
 **Server-side (Recommended):**
+
 ```typescript
 // Store in httpOnly cookies
-response.cookies.set('accessToken', token, {
+response.cookies.set("accessToken", token, {
   httpOnly: true,
   secure: true,
-  sameSite: 'strict',
-  maxAge: 900
+  sameSite: "strict",
+  maxAge: 900,
 });
 ```
 
 **Client-side (Fallback):**
+
 ```typescript
 // Store in localStorage if httpOnly not available
-localStorage.setItem('accessToken', token);
+localStorage.setItem("accessToken", token);
 ```
 
 ### Axios Interceptor
@@ -920,6 +965,7 @@ NEXT_PUBLIC_REFRESH_TOKEN_EXPIRY=604800
 ## Testing Scenarios
 
 ### Happy Path - Customer Registration
+
 ```
 1. POST /register (email, password, role=CUSTOMER)
 2. POST /verify-otp (otp from email)
@@ -928,6 +974,7 @@ NEXT_PUBLIC_REFRESH_TOKEN_EXPIRY=604800
 ```
 
 ### Happy Path - Handyman Login
+
 ```
 1. POST /login (email, password)
 2. Returns: handyman user + tokens
@@ -936,6 +983,7 @@ NEXT_PUBLIC_REFRESH_TOKEN_EXPIRY=604800
 ```
 
 ### Error Path - Password Reset
+
 ```
 1. POST /forgot-password
 2. POST /verify-reset-otp
@@ -945,6 +993,7 @@ NEXT_PUBLIC_REFRESH_TOKEN_EXPIRY=604800
 ```
 
 ### Token Refresh
+
 ```
 1. Access token expires (15 min)
 2. Axios interceptor detects 401
